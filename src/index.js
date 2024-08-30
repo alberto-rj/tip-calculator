@@ -189,7 +189,6 @@ const renderCurrentStore = () => {
     return;
   writeData();
   lastStore = currentStore.clone();
-  currentStore.reset();
 };
 /* render logic */
 
