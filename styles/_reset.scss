@@ -1,0 +1,12 @@
+*::before,
+*,
+*::after {
+  border: none;
+  color: inherit;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}

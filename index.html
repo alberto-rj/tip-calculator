@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Tip Calculator - Calculate Tips Easily | Frontend Mentor</title>
+  <meta name="title" content="Tip Calculator - Calculate Tips Easily | Frontend Mentor" />
+  <meta name="description" content="Calculate tips easily with our Tip Calculator. Save time and ensure fair splits. Perfect for quick and accurate tipping calculations. Try now!" />
+  <meta name="keywords" content="tip calculator, online tip calculator, calculate tips, tipping, split bills, frontend mentor" />
+  <meta name="author" content="Alberto Raúl José" />
+  <link rel="canonical" href="https://alberto-rj.github.com/tip-calculator" />
+
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Tip Calculator - Calculate Tips Easily" />
+  <meta property="og:description" content="Use our Tip Calculator to calculate tips easily and fairly. Perfect for quick and accurate tipping calculations." />
+  <meta property="og:image" content="https://alberto-rj.github.com/tip-calculator/design/desktop-preview.jpg" />
+  <meta property="og:url" content="https://alberto-rj.github.com/tip-calculator" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Tip Calculator" />
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tip Calculator - Calculate Tips Easily" />
+  <meta name="twitter:description" content="Calculate tips with ease using our Tip Calculator. Perfect for quick and accurate tipping calculations." />
+  <meta name="twitter:image" content="https://alberto-rj.github.com/tip-calculator/design/desktop-preview.jpg" />
+  <meta name="twitter:site" content="@albertorauljose" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tip Calculator",
+    "description": "Calculate tips easily with our online Tip Calculator.",
+    "url": "https://alberto-rj.github.com/tip-calculator",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "author": {
+      "@type": "Person",
+      "name": "Alberto Raúl José"
+    }
+  }
+  </script>  
+  
+  <!-- Favicon, Manifest and Theme Color -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
+  <link rel="mask-icon" href="assets/images/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="msapplication-TileColor" content="#2a150f" />
+  <meta name="msapplication-config" content="assets/images/browserconfig.xml" />
+  <meta name="theme-color" content="#5e7a7d" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles/index.css" />
+
+  <!-- JS -->
+  <script type="module" src="src/index.js" defer></script>
+
+</head>
+<body class="page">
+  <main class="content">
+    <!-- Brief introduction -->
+    <section aria-labelledby="intro-heading" class="visually-hidden">
+      <h1 id="intro-heading">Calculate Your Tips Accurately</h1>
+      <p>
+        Welcome to the Tip Calculator! Quickly and accurately calculate the tips and total amounts for your bill.
+        Simply enter the bill amount, select a tip percentage, and specify the number of people to split the bill.
+        It's fast, easy, and helps you avoid any tipping mishaps.
+      </p>
+    </section>
+    <div class="logo">
+      <a 
+        class="logo__link" 
+        href="index.html" 
+        aria-label="Home page link"
+      >
+        <img  
+          src="assets/images/logo.svg" 
+          alt="" 
+          width="87" 
+          height="54" 
+          aria-hidden="true" 
+          focusable="false"
+          class="logo__icon"
+        />
+      </a>
+    </div>
+    <div class="card">
+      <form class="form" novalidate>
+        <div class="form__field">
+          <label for="bill-input" class="form__label">Bill</label>
+          <input 
+            id="bill-input" 
+            type="number" 
+            inputmode="decimal"
+            step="0.01" 
+            min="0"
+            aria-label="Enter the total bill amount, greater than or equal to zero"
+            placeholder="0.00" 
+            maxlength="10"
+            class="form__input icon-dollar"
+          />
+          <span id="bill-alert" role="alert" aria-live="polite" class="form__alert"></span>
+        </div>
+        <div class="form__group">
+          <span aria-hidden="true" class="form__label">Select Tip %</span>
+          <div
+            id="tip-listbox" 
+            role="listbox" 
+            tabindex="0"
+            aria-label="Select tip percentage" 
+            aria-activedescendant="tip-option-3" 
+            class="form__listbox"
+          />
+            <span 
+              id="tip-option-1" 
+              role="option" 
+              data-value="5"
+              class="form__option" 
+              aria-label="Tip option: 5 percent"
+            >
+              5%
+            </span>
+            <span 
+              id="tip-option-2" 
+              role="option" 
+              aria-label="Tip option: 10 percent"
+              data-value="10"
+              class="form__option" 
+            >
+              10%
+            </span>
+            <span 
+              id="tip-option-3" 
+              role="option" 
+              aria-selected="true" 
+              aria-label="Tip option: 15 percent"
+              data-value="15"
+              class="form__option"
+            >
+              15%
+            </span>
+            <span 
+              id="tip-option-4" 
+              role="option" 
+              aria-label="Tip option: 25 percent"
+              data-value="25"
+              class="form__option"
+            >
+              25%
+            </span>
+            <span 
+              id="tip-option-5" 
+              role="option" 
+              aria-label="Tip option: 50 percent"
+              data-value="50"
+              class="form__option" 
+            >
+              50%
+            </span>
+            <input 
+              id="tip-input" 
+              type="number" 
+              inputmode="decimal" 
+              min="0" 
+              max="100" 
+              step="0.01"
+              placeholder="0.00" 
+              aria-label="Enter a custom tip, a decimal number from 0 to 100" 
+              class="form__input"
+            />
+          </div>
+          <span id="tip-alert" role="alert" aria-live="polite" class="form__alert"></span>
+        </div>
+        <div class="form__field">
+          <label for="nop-input" class="form__label">
+            Number of People
+          </label>
+          <input 
+            id="nop-input" 
+            type="number" 
+            inputmode="numeric" 
+            min="1"
+            aria-label="Enter the number of people, an integer value greater than zero"
+            placeholder="1" 
+            class="form__input icon-person"
+          />
+          <span id="nop-alert" role="alert" aria-live="polite" class="form__alert"></span>
+        </div>
+      </form>
+      <div class="output">
+        <div class="output__header">
+          <div class="output__row">
+            <div id="tip-amount-heading" class="output__heading">
+              <span class="visually-hidden">Tip amount per person</span>
+              <span aria-hidden="true" class="output__big">Tip Amount</span>
+              <span aria-hidden="true" class="output__small">/ person</span>
+            </div>
+            <span id="tip-amount-data" class="output__data">$0.00</span>
+          </div>
+          <div class="output__row">
+            <div id="total-heading" class="output__heading">
+              <span class="visually-hidden">Total per person</span>
+              <span aria-hidden="true" class="output__big">Total</span>
+              <span aria-hidden="true" class="output__small">/ person</span>
+            </div>
+            <span id="total-data" class="output__data">$0.00</span>
+          </div>
+        </div>
+        <button 
+          id="reset-btn"
+          type="button" 
+          aria-label="Reset all inputs and outputs" 
+          aria-disabled="true" 
+          disabled 
+          class="output__btn"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
