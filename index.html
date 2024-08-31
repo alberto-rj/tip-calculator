@@ -25,24 +25,7 @@
   <meta name="twitter:title" content="Tip Calculator - Calculate Tips Easily" />
   <meta name="twitter:description" content="Calculate tips with ease using our Tip Calculator. Perfect for quick and accurate tipping calculations." />
   <meta name="twitter:image" content="https://alberto-rj.github.com/tip-calculator/design/desktop-preview.jpg" />
-  <meta name="twitter:site" content="@albertorauljose" />
-
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Tip Calculator",
-    "description": "Calculate tips easily with our online Tip Calculator.",
-    "url": "https://alberto-rj.github.com/tip-calculator",
-    "applicationCategory": "Utility",
-    "operatingSystem": "All",
-    "author": {
-      "@type": "Person",
-      "name": "Alberto Raúl José"
-    }
-  }
-  </script>  
+  <meta name="twitter:site" content="@albertorauljose" /> 
   
   <!-- Favicon, Manifest and Theme Color -->
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
@@ -55,12 +38,28 @@
   <meta name="msapplication-config" content="assets/images/browserconfig.xml" />
   <meta name="theme-color" content="#5e7a7d" />
 
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Tip Calculator",
+      "description": "Calculate tips easily with our online Tip Calculator.",
+      "url": "https://alberto-rj.github.com/tip-calculator",
+      "applicationCategory": "Utility",
+      "operatingSystem": "All",
+      "author": {
+        "@type": "Person",
+        "name": "Alberto Raúl José"
+      }
+    }
+  </script> 
+
   <!-- CSS -->
   <link rel="stylesheet" href="styles/index.css" />
 
   <!-- JS -->
   <script type="module" src="src/index.js" defer></script>
-
 </head>
 <body class="page">
   <main class="content">
@@ -73,7 +72,7 @@
         It's fast, easy, and helps you avoid any tipping mishaps.
       </p>
     </section>
-    <div class="logo">
+    <div class="logo fade-in">
       <a 
         class="logo__link" 
         href="index.html" 
@@ -97,15 +96,17 @@
           <input 
             id="bill-input" 
             type="number" 
-            inputmode="decimal"
+            inputmode="decimal" 
             step="0.01" 
-            min="0"
-            aria-label="Enter the total bill amount, greater than or equal to zero"
+            min="0" 
+            max="9999" 
+            aria-label="Enter the total bill amount, from 0 to 9999" 
+            aria-required="true" 
+            required
             placeholder="0.00" 
-            maxlength="10"
             class="form__input icon-dollar"
           />
-          <span id="bill-alert" role="alert" aria-live="polite" class="form__alert"></span>
+          <span id="bill-alert" role="alert" aria-live="assertive" class="form__alert"></span>
         </div>
         <div class="form__group">
           <span aria-hidden="true" class="form__label">Select Tip %</span>
@@ -164,59 +165,64 @@
               50%
             </span>
             <input 
-              id="tip-input" 
+              id="custom-tip-input" 
               type="number" 
               inputmode="decimal" 
               min="0" 
               max="100" 
-              step="0.01"
+              step="0.01" 
+              maxlength="6"
               placeholder="0.00" 
               aria-label="Enter a custom tip, a decimal number from 0 to 100" 
               class="form__input"
             />
           </div>
-          <span id="tip-alert" role="alert" aria-live="polite" class="form__alert"></span>
+          <span id="tip-alert" role="alert" aria-live="assertive" class="form__alert"></span>
         </div>
         <div class="form__field">
-          <label for="nop-input" class="form__label">
+          <label for="number-of-people-input" class="form__label">
             Number of People
           </label>
           <input 
-            id="nop-input" 
+            id="number-of-people-input" 
             type="number" 
             inputmode="numeric" 
-            min="1"
-            aria-label="Enter the number of people, an integer value greater than zero"
-            placeholder="1" 
+            min="1" 
+            max="100" 
+            maxlength="3"
+            aria-label="Enter a number of people, an integer from 1 to 100" 
+            aria-required="true" 
+            required 
+            placeholder="1"
             class="form__input icon-person"
           />
-          <span id="nop-alert" role="alert" aria-live="polite" class="form__alert"></span>
+          <span id="nop-alert" role="alert" aria-live="assertive" class="form__alert"></span>
         </div>
       </form>
       <div class="output">
         <div class="output__header">
-          <div class="output__row">
-            <div id="tip-amount-heading" class="output__heading">
+          <h2 aria-live="polite" class="output__heading">
+            <span id="tip-amount-heading" class="output__name">
               <span class="visually-hidden">Tip amount per person</span>
               <span aria-hidden="true" class="output__big">Tip Amount</span>
               <span aria-hidden="true" class="output__small">/ person</span>
-            </div>
-            <span id="tip-amount-data" class="output__data">$0.00</span>
-          </div>
-          <div class="output__row">
-            <div id="total-heading" class="output__heading">
+            </span>
+            <span id="tip-amount-data" class="output__value">$0.00</span>
+          </h2>
+          <h2 aria-live="polite" class="output__heading">
+            <span id="total-heading" class="output__name">
               <span class="visually-hidden">Total per person</span>
               <span aria-hidden="true" class="output__big">Total</span>
               <span aria-hidden="true" class="output__small">/ person</span>
-            </div>
-            <span id="total-data" class="output__data">$0.00</span>
-          </div>
+            </span>
+            <span id="total-data" class="output__value">$0.00</span>
+          </h2>
         </div>
         <button 
-          id="reset-btn"
+          id="reset-btn" 
           type="button" 
           aria-label="Reset all inputs and outputs" 
-          aria-disabled="true" 
+          aria-disabled="true"
           disabled 
           class="output__btn"
         >
