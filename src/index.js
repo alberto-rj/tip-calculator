@@ -1,17 +1,25 @@
 import Listbox from "./list-box.js";
-import InputValue from "./input-value.js";
 import DataStore from "./data-store.js";
 
+
+/* Form fields elements */
 const billInput = document.getElementById('bill-input');
 const tipListbox = document.getElementById('tip-listbox');
-const tipInput = document.getElementById('tip-input');
-const nopInput = document.getElementById('nop-input');
+const customTipInput = document.getElementById('custom-tip-input');
+const numberOfPeopleInput = document.getElementById('number-of-people-input');
 const inputs = [
   billInput,
-  tipInput,
-  nopInput
+  customTipInput,
+  numberOfPeopleInput
 ];
+/* Form fields elements */
 
+
+/* Reset button */
+const resetBtn = document.getElementById('reset-btn');
+/* Reset button */
+
+/* Output elements */
 const tipAmountHeading = document.getElementById('tip-amount-heading');
 const tipAmountData = document.getElementById('tip-amount-data');
 const totalHeading = document.getElementById('total-heading');
@@ -20,50 +28,31 @@ const fadeInElements = [
   tipAmountHeading,
   tipAmountData,
   totalHeading,
-  totalData
+  totalData,
+  resetBtn
 ];
+/* Output elements */
 
-const resetBtn = document.getElementById('reset-btn');
 
+/* Object for the tip selection */
 const listbox = new Listbox(tipListbox);
-
-let currentStore  = new DataStore();
-currentStore.set(billInput.id, null);
-currentStore.set(tipInput.id, null);
-currentStore.set(nopInput.id, null);
-
-let lastStore = new DataStore();
+/* Object for the tip selection */
 
 
-/* render logic */
-const renderError = (input, error) => {
-  console.log(error);
-  const parent = input.closest('.form__field, .form__group');
-  if (!parent) return;
+/* Object for store the inputs values */
+let inputStore  = new DataStore();
 
-  const formAlert = parent.querySelector('.form__alert');
-  if (!formAlert) return;
-
-  formAlert.textContent = error;
-  input.setAttribute('aria-invalid', 'true');
-  input.setAttribute('aria-describedby', formAlert.id);
-  setShakeEffect(input);
-  addClass(parent, 'is-invalid');
+const defaultInputStore = () => {
+  inputStore.set(billInput.id, null);
+  inputStore.set(customTipInput.id, 15);
+  inputStore.set(numberOfPeopleInput.id, null);
 };
 
-const clearError = (input) => {
-  const parent = input.closest('.form__field');
-  if (!parent) return;
+defaultInputStore();
+/* Object for store the inputs values */
 
-  const formAlert = parent.querySelector('.form__alert');
-  if (!formAlert) return;
 
-  formAlert.textContent = '';
-  input.removeAttribute('aria-invalid');
-  input.removeAttribute('aria-describedby');
-  removeClass(parent, 'is-invalid');
-};
-
+/* general logic */
 const addClass = (element, className) => {
   element.classList.add(className);
 };
@@ -72,64 +61,29 @@ const removeClass = (element, className) => {
   element.classList.remove(className);
 };
 
-const getClassNamesClear = (classNames) => {
-  const eventHandler = (event) => {
-    const { target } = event;
-    classNames.forEach((className) => {
-      removeClass(target, className);
-    });
-  };
-  return eventHandler;
-};
-
 const setDisabled =  (element, status) => {
   status = status === true;
   if (status) {
-    element.setAttribute('disabled', status);
     element.setAttribute('aria-disabled', status);
   } else {
     element.removeAttribute('aria-disabled');
-    element.removeAttribute('disabled');
   }
-};
-
-const clearInputs = () => {
-  inputs.forEach((input) => input.value = '');
-  listbox.focus(0);
-};
-
-const setShakeEffect = (element) => {
-  const className = 'shake';
-  const classNamesClear = getClassNamesClear([className]); 
-  addClass(element, className);
-  element.addEventListener('animationend', classNamesClear);
+  element.disabled = status;
 };
 
 const setFadeInEffect = (elements) => {
   elements.forEach((element, index) => {
-    const classNames = ['fade-in'];
+    addClass(element, `fade-in`);
     if (index > 0)
-      classNames.push(`fade-in--${index}`);
-
-    classNames.forEach((className) => {
-      addClass(element, className);
-    });
-    
-    const classNamesClear = getClassNamesClear(classNames);
-    element.addEventListener('animationend', classNamesClear);
+      addClass(element, `fade-in--${index}`);
   });
 };
 
-const fadeInReverseEffect = (elements) => {
+const setFadeInReverseEffect = (elements) => {
   for (let i = elements.length - 1, j = 0; i >= 0; i--, j++) {
-    let element = elements[i];
-    const classNames = ['fade-in'];
+    addClass(elements[i], `fade-in`);
     if (j > 0)
-      classNames.push(`fade-in--${j}`);
-
-    classNames.forEach((className) => {
-      addClass(element, className);
-    });
+      addClass(elements[i], `fade-in--${j}`);
   }
 };
 
@@ -152,150 +106,213 @@ const calculateData = (bill, tip, nop) => {
 };
 
 const renderData = (data) => {
-
-  const tipAmount = data[tipAmountData.id];
-  tipAmountData.textContent = `$${tipAmount}`;
+  const tip = data[tipAmountData.id];
+  tipAmountData.textContent = `$${tip}`;
 
   const total = data[totalData.id];
   totalData.textContent = `$${total}`;
 };
 
-const writeData = () => {
-  const bill = currentStore.get(billInput.id);
-  const tip = currentStore.get(tipInput.id);
-  const nop = currentStore.get(nopInput.id);
-  const data = calculateData(bill, tip, nop);
-  renderData(data);
-  setFadeInEffect(fadeInElements);
-  setDisabled(resetBtn, false);
-}
-
-const clearData = () => {
+const resetData = () => {
   const outData = {};
   outData[tipAmountData.id] = '0.00';
   outData[totalData.id] = '0.00';
   renderData(outData);
 };
 
-const hasCurrentStore = () => {
-  if (currentStore.hasEmptyKey()) {
-    return false;
-  }
-  return true;
-};
-
-const renderCurrentStore = () => {
-  if (!hasCurrentStore())
-    return;
-  writeData();
-  lastStore = currentStore.clone();
-};
-/* render logic */
-
-
-/* input handler */
-
-const handleInput = (input, validate) => {
-  validate(input);
-  renderCurrentStore();
-};
-
-const handleBillInput = (input) => {
-  validateBill(input);
-  renderCurrentStore();
+const writeData = () => {
+  const bill = inputStore.get(billInput.id);
+  const tip = inputStore.get(customTipInput.id);
+  const nop = inputStore.get(numberOfPeopleInput.id);
+  const data = calculateData(bill, tip, nop);
+  renderData(data);
+  setFadeInEffect(fadeInElements);
+  setDisabled(resetBtn, false);
 }
 
-const handleTipInput = (input) => {
-  validateCustomTip(input);
-  renderCurrentStore();
+const tryWriteData = () => {
+  if (inputStore.hasEmptyKey())
+    return;
+  writeData();
+};
+/* general logic */
+
+
+/* Functions for input validation */
+const setShakeEffect = (element) => {
+  addClass(element, 'shake');
 };
 
-const handleNOPInput = (input) => {
-  validateNumberOfPeople(input);
-  renderCurrentStore();
+const parentOf = (input) => {
+  return input.closest('.form__field, .form__group');
 };
-/* input handler */
 
-/* Validation handler */
+const alertOf = (parent) => {
+  return parent.querySelector('.form__alert');
+};
+
+const showInputError = (input, error) => {
+  const parent = parentOf(input);
+  if (!parent) return;
+
+  const formAlert = alertOf(parent);
+  if (!formAlert) return;
+
+  formAlert.textContent = error;
+  input.setAttribute('aria-invalid', 'true');
+  input.setAttribute('aria-describedby', formAlert.id);
+  input.focus();
+  setShakeEffect(input);
+  addClass(parent, 'is-invalid');
+};
+
+const clearInputError = (input) => {
+  const parent = parentOf(input);
+  if (!parent) return;
+
+  const formAlert = alertOf(parent);
+  if (!formAlert) return;
+
+  formAlert.textContent = '';
+  input.removeAttribute('aria-invalid');
+  input.removeAttribute('aria-describedby');
+  removeClass(parent, 'is-invalid');
+};
+
 const validateBill = (input) => {
   const { id, value } = input;
-  if (input.checkValidity()) {
-    currentStore.set(id, Number.parseFloat(value));
-    clearError(input);
-    return true;
+  const billValue = Number.parseFloat(value);
+  if (input.checkValidity() && !Number.isNaN(billValue)) {
+    inputStore.set(id, billValue);
+    clearInputError(input);
   } else {
-    currentStore.set(id, null);
-    renderError(input, "Enter ≥ 0 only");
-    return false;
+    inputStore.set(id, null);
+    showInputError(input, "Enter 0 to 9999 only");
   }
 };
 
 const validateCustomTip = (input) => {
   const {id, value } = input;
-  if (input.checkValidity()) {
-    currentStore.set(id, Number.parseFloat(value));
-    clearError(input);
-    return true;
+  const customValue = Number.parseFloat(value);
+  if (input.checkValidity() && !Number.isNaN(customValue)) {
+    inputStore.set(id, customValue);
+    clearInputError(input);
   } else {
-    currentStore.set(id, null);
-    renderError(input, "Enter 0-100 only");
-    return false;
+    inputStore.set(id, null);
+    showInputError(input, "Enter 0 to 100 only");
   }
 };
 
 const validateNumberOfPeople = (input) => {
   const { id, value } = input;
-  if (input.checkValidity()) {
-    currentStore.set(id, Number.parseInt(value));
-    clearError(input);
-    return true;
+  const nop = Number.parseInt(value);
+  if (input.checkValidity() && !Number.isNaN(nop)) {
+    inputStore.set(id, nop);
+    clearInputError(input);
   } else {
-    currentStore.set(id, null);
-    renderError(input, "Enter > 0 only");
-    return false;
+    inputStore.set(id, null);
+    showInputError(input, "Enter 1 to 100 only");
   }
 };
-/* Validation handler */
+/* Functions for input validation */
 
-/* change */
-const handleChange = (listbox) => {
-  const option = listbox.getSelectedOption();
-  let number = Number.parseFloat(option.dataset.value);
-  if (Number.isNaN(number)) {
-    number = null;
-  }
-  currentStore.set(tipInput.id, number);
+
+/* Function for the reset state*/
+const resetInput = (input) => {
+  clearInputError(input);
+  input.value = '';
 };
-/* change */
+
+const resetInputs = () => {
+  inputs.forEach(resetInput);
+};
+
+const resetListbox = () => {
+  listbox.focus(2);
+};
+
+const resetFormFields = () => {
+  resetInputs();
+  resetListbox();
+};
+/* Function for the reset state*/
 
 
 /* Click event handler for the reset button */
-const handleReset = (event) => {
-  clearInputs();
-  clearData();
-  fadeInReverseEffect(fadeInElements);
+const resetBtnHandler = (event) => {
   setDisabled(event.target, true);
+  resetData();
+  setFadeInReverseEffect(fadeInElements);
+  resetFormFields();
+  defaultInputStore();
 };
 /* Click event handler for the reset button */
 
 
-/* Input Event Handler for the form fields */
+/* Animationend handler */
+const shakeAnimationendHandler = (event) => {
+  removeClass(event.target, 'shake');
+};
+
+const fadeInAnimationendHandler = (event) => {
+  removeClass(event.target, 'fade-in');
+  for (let i = 1; i < fadeInElements.length; i++) {
+    removeClass(event.target, `fade-in--${i}`);
+  }
+};
+/* Animationend handler */
+
+
+/* Input event handler for the "inputs" */
+const handleInput = (input, validate) => {
+  validate(input);
+  tryWriteData();
+};
+
 const inputHandlers = {};
 
-inputHandlers[billInput.id] = (event) => handleBillInput(event.target);
+inputHandlers[billInput.id] = (event) => {
+  handleInput(event.target, validateBill);
+}
 
-inputHandlers[tipInput.id] = (event) => handleTipInput(event.target);
+inputHandlers[customTipInput.id] = (event) => {
+  listbox.clearSelectedOption();
+  handleInput(event.target, validateCustomTip);
+}
 
-inputHandlers[nopInput.id] = (event) => handleNOPInput(event.target);
+inputHandlers[numberOfPeopleInput.id] = (event) => {
+  handleInput(event.target, validateNumberOfPeople);
+}
 /* Input Event Handler for the form fields */
 
 
+/* selectionTipHandler */
+const selectionTipHandler = (option) => {
+  resetInput(customTipInput);
+  let number = Number.parseFloat(option.dataset.value);
+  if (Number.isNaN(number)) {
+    inputStore.set(customTipInput.id, null);
+  } else {
+    inputStore.set(customTipInput.id, number);
+    tryWriteData();
+  }
+};
+/* selectionTipHandler */
 
-// Add input event listener for the "inputs"
+
+// Add event listeners for the "inputs"
 inputs.forEach((input) => {
   input.addEventListener('input', inputHandlers[input.id]);
+  input.addEventListener('animationend', shakeAnimationendHandler);
 });
-// Add click event listener for the "resetBtn"
-resetBtn.addEventListener('click', handleReset);
 
-listbox.onSelected = handleChange;
+// Add event listener for the "fadeInElments"
+fadeInElements.forEach((element) => {
+  element.addEventListener('animationend', fadeInAnimationendHandler);
+});
+
+// Add event listener for the "resetBtn"
+resetBtn.addEventListener('click', resetBtnHandler);
+
+// Add a call back for the "lisbox"
+listbox.onSelected = selectionTipHandler;

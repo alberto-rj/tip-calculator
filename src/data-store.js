@@ -4,9 +4,7 @@ class DataStore {
   }
 
   set (key, value) {
-    console.log('Before:', this.map);
     this.map[key] = value;
-    console.log('After:', this.map);
   }
 
   get (key) {
@@ -118,7 +116,9 @@ class DataStore {
   }
 
   reset () {
-    this.map = {};
+    for (let key in this.map) {
+      this.map[key] = null;
+    }
   }
 }
 

@@ -1,9 +1,9 @@
 class Listbox {
   constructor (node) {
     this.node = node;
-    this.currentIndex = this.getSelectedOptionIndex();
+    this.onSelected = null;
     this.registenerEvents();
-    this.onSelected = (listbox) => {};
+    this.currentIndex = this.getSelectedOptionIndex();
   }
   
   registenerEvents() {
@@ -44,10 +44,6 @@ class Listbox {
     this.node.setAttribute('aria-activedescendant', newOption.id);
     
     this.currentIndex = index;
-
-    if (typeof(this.onSelected) === 'function') {
-      this.onSelected(this);
-    }
   }
 
   clearSelectedOption () {
@@ -87,8 +83,13 @@ class Listbox {
   handleClick (event) {
     const options = this.getOptions();
     const index = options.findIndex(option => option === event.target);
-    if (index >= 0) 
-      this.focus(index);
+    if (index < 0)
+      return;
+    
+    this.focus(index);
+    if (typeof(this.onSelected) === 'function') {
+      this.onSelected(options[index]);
+    }
   }
   
   handleKeydown (event) {

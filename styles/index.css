@@ -80,7 +80,7 @@ body {
   padding: clamp(1.25rem, 3vw + 0.25rem, 2rem);
   display: grid;
   gap: 2rem;
-  max-width: 500px;
+  max-width: 31.25rem;
 }
 
 .form {
@@ -94,6 +94,9 @@ body {
   margin-bottom: 0.5rem;
 }
 .form .form__input {
+  appearance: textfield;
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
   color: var(--cyan-200);
   background-color: var(--gray-400);
   box-shadow: 0 0 2px 0px var(--gray-300);
@@ -105,11 +108,11 @@ body {
 }
 .form .form__input::-webkit-inner-spin-button, .form .form__input::-webkit-outer-spin-button {
   -webkit-appearance: none;
-          appearance: none;
   margin: 0;
 }
 .form .form__input.icon-dollar, .form .form__input.icon-person {
   background: var(--icon-url) no-repeat left 1rem center var(--gray-400);
+  padding: 0.125rem 0.875rem 0.125rem 2.5rem;
 }
 .form .form__input.icon-dollar {
   --icon-url: url(../assets/images/icon-dollar.svg);
@@ -146,6 +149,9 @@ body {
 .form__field.is-invalid .form__alert, .form__group.is-invalid .form__alert {
   display: block;
 }
+.form__field.is-invalid:last-child {
+  margin-bottom: 1.5rem;
+}
 .form__group {
   margin: 2rem 0;
 }
@@ -174,6 +180,9 @@ body {
 .form__group .form__listbox:focus-visible {
   outline: 2px solid var(--cyan-100);
 }
+.form__group .form__input {
+  padding: 0.125rem 0.875rem;
+}
 .form__group .form__input::-moz-placeholder {
   color: var(--gray-100);
 }
@@ -188,26 +197,26 @@ body {
   align-content: space-between;
   padding: clamp(1.5rem, 2vw + 0.25rem, 4.5rem);
 }
-.output__header .output__row {
+.output__header .output__heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
 }
-.output__header .output__row .output__heading {
+.output__header .output__heading .output__name {
   color: var(--gray-500);
   font-size: 1rem;
 }
-.output__header .output__row .output__heading .output__small {
+.output__header .output__heading .output__name .output__small {
   display: block;
 }
-.output__header .output__row .output__heading .output__small {
+.output__header .output__heading .output__name .output__small {
   font-size: 0.875rem;
   color: var(--gray-200);
 }
-.output__header .output__row .output__data {
+.output__header .output__heading .output__value {
   color: var(--cyan-100);
-  font-size: clamp(1.25rem, 5vw + 0.5rem, 2.5rem);
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 2rem);
 }
 .output__btn {
   background: var(--cyan-100);
@@ -232,7 +241,7 @@ body {
   cursor: not-allowed;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
   .card {
     border-radius: clamp(0.875rem, 2vw + 0.5rem, 1.75rem);
     margin: 4vh 0;
@@ -244,22 +253,31 @@ body {
     padding: 0.25rem 1rem !important;
     border-radius: 0.5rem !important;
   }
+  .form__input.icon-dollar, .form__input.icon-person {
+    padding: 0.25rem 1rem 0.25rem 2.5rem !important;
+  }
 }
-@media (min-width: 992px) {
+@media (min-width: 62rem) {
   .card {
     gap: clamp(2rem, 3vw + 0.25rem, 4rem);
     grid-template-columns: repeat(2, 1fr);
-    max-width: 900px;
+    max-width: 56.25rem;
     margin: 12vh 0;
   }
   .form {
     padding: 1rem 0;
   }
-  .output__row + .output__row {
+  .output__heading + .output__heading {
     margin-top: 2rem !important;
+  }
+  .output__value {
+    font-size: clamp(1.25rem, 2vw + 0.5rem, 2.5rem) !important;
   }
 }
 @media (prefers-reduced-motion: no-preference) {
+  body {
+    scroll-behavior: smooth;
+  }
   .form__input,
   .form__option,
   .output__btn {

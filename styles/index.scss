@@ -45,7 +45,7 @@ body {
   padding: clamp(1.25rem, 3vw + 0.25rem, 2rem);
   display: grid;
   gap: 2rem;
-  max-width: 500px;
+  max-width: 31.25rem;
 }
 .form {
   width: 100%;
@@ -60,6 +60,9 @@ body {
   }
 
   .form__input {
+    appearance: textfield;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
     color: var(--cyan-200);
     background-color: var(--gray-400);
     box-shadow: 0 0 2px 0px var(--gray-300);
@@ -68,16 +71,15 @@ body {
     padding: 0.125rem 0.875rem;
     text-align: right;
     width: 100%;
-    
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
-      appearance: none;
+      -webkit-appearance: none;
       margin: 0;
     }
-
     &.icon-dollar,
     &.icon-person {
       background: var(--icon-url) no-repeat left 1rem center var(--gray-400);
+      padding: 0.125rem 0.875rem 0.125rem 2.5rem;
     }
     &.icon-dollar {
       --icon-url: url(../assets/images/icon-dollar.svg);
@@ -85,7 +87,6 @@ body {
     &.icon-person {
       --icon-url: url(../assets/images/icon-person.svg);
     }
-
     &::placeholder {
       color: var(--gray-100)
     }
@@ -98,7 +99,6 @@ body {
   &__field,
   &__group {
     position: relative;
-   
     .form__alert {
       color: var(--red-100);
       display: none;
@@ -120,8 +120,8 @@ body {
     margin-bottom: 3rem;
   }
 
-  &__field {
-    
+  &__field.is-invalid:last-child {
+    margin-bottom: 1.5rem;
   }
 
   &__group {
@@ -156,6 +156,7 @@ body {
       }
     }
     .form__input {
+      padding: 0.125rem 0.875rem;
       &::placeholder {
         color: var(--gray-100);
       }
@@ -170,12 +171,12 @@ body {
   align-content: space-between;
   padding: clamp(1.5rem, 2vw + 0.25rem, 4.5rem);
   &__header {
-    .output__row {
+    .output__heading {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-top: 1rem;
-      .output__heading {
+      .output__name {
         color: var(--gray-500);
         font-size: 1rem;
         .output__small {
@@ -186,9 +187,9 @@ body {
           color: var(--gray-200);
         }
       }
-      .output__data {
+      .output__value {
         color: var(--cyan-100);
-        font-size: clamp(1.25rem, 5vw + 0.5rem, 2.5rem);
+        font-size: clamp(1.25rem, 2vw + 0.5rem, 2rem);
       }
     }
   }
@@ -216,7 +217,7 @@ body {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48rem) {
   .card {
     border-radius: clamp(0.875rem, 2vw + 0.5rem, 1.75rem);
     margin: 4vh 0;
@@ -227,21 +228,28 @@ body {
   .form__input {
     padding: 0.25rem 1rem !important;
     border-radius: 0.5rem !important;
+    &.icon-dollar,
+    &.icon-person {
+      padding: 0.25rem 1rem 0.25rem 2.5rem !important;
+    }
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 62rem) {
   .card {
     gap: clamp(2rem, 3vw + 0.25rem, 4rem);
     grid-template-columns: repeat(2, 1fr);
-    max-width: 900px;
+    max-width: 56.25rem;
     margin: 12vh 0;
   }
   .form {
     padding: 1rem 0;
   }
-  .output__row  + .output__row{
+  .output__heading  + .output__heading {
     margin-top: 2rem !important;
+  }
+  .output__value {
+    font-size: clamp(1.25rem, 2vw + 0.5rem, 2.5rem) !important;
   }
 }
 
