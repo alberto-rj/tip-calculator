@@ -3,7 +3,7 @@ class Listbox {
     this.node = node;
     this.currentIndex = this.getSelectedOptionIndex();
     this.registenerEvents();
-    this.onSelected = (thisValue) => {};
+    this.onSelected = (listbox) => {};
   }
   
   registenerEvents() {
@@ -44,7 +44,10 @@ class Listbox {
     this.node.setAttribute('aria-activedescendant', newOption.id);
     
     this.currentIndex = index;
-    this.onSelected(this);
+
+    if (typeof(this.onSelected) === 'function') {
+      this.onSelected(this);
+    }
   }
 
   clearSelectedOption () {
