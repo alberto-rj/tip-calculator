@@ -61,7 +61,7 @@
 ### Links
 
 - [Preview site](https://alberto-rj.github.io/tip-calculator)
-- [Preview solution on Frontent Mentor](#)
+- [Preview solution on Frontent Mentor](https://www.frontendmentor.io/solutions/animated-tip-calcutor-app-using-sass-qxM5pUiJDC)
 
 ## The challenge
 
