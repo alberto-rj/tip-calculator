@@ -63,11 +63,6 @@ const removeClass = (element, className) => {
 
 const setDisabled =  (element, status) => {
   status = status === true;
-  if (status) {
-    element.setAttribute('aria-disabled', status);
-  } else {
-    element.removeAttribute('aria-disabled');
-  }
   element.disabled = status;
 };
 

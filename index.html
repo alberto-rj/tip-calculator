@@ -59,7 +59,7 @@
   <link rel="stylesheet" href="styles/index.min.css" />
 
   <!-- JS -->
-  <script type="module" src="src/index.min.js" defer></script>
+  <script type="module" src="src/index.min.js"></script>
 </head>
 <body class="page">
   <main class="content">
@@ -84,7 +84,6 @@
           width="87" 
           height="54" 
           aria-hidden="true" 
-          focusable="false"
           class="logo__icon"
         />
       </a>
@@ -171,7 +170,6 @@
               min="0" 
               max="100" 
               step="0.01" 
-              maxlength="6"
               placeholder="0.00" 
               aria-label="Enter a custom tip percentage, between 0 and 100 percent" 
               class="form__input"
@@ -188,8 +186,7 @@
             type="number" 
             inputmode="numeric" 
             min="1" 
-            max="100" 
-            maxlength="3"
+            max="100"
             aria-label="Enter number of people splitting the bill, between 1 and 100" 
             aria-required="true" 
             required 
@@ -222,7 +219,6 @@
           id="reset-btn" 
           type="button" 
           aria-label="Reset all inputs and calculated results" 
-          aria-disabled="true"
           disabled 
           class="output__btn"
         >
