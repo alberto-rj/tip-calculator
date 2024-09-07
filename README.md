@@ -1,23 +1,69 @@
-<h1 align="center">Frontend Mentor - Tip calculator app solution</h1>
+<div align="center">
 
-This is a solution to the [Tip calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+  <img src="https://www.frontendmentor.io/static/images/logo-mobile.svg" alt="frontendmentor" width="80">
 
-## Table of contents
+  <h2 align="center">Tip calculator app solution</h2>
+  <p align="center">
+    <a href="https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX"><strong>Frontend Mentor Challenge</strong></a>
+    <br />
+    <br />
+    <a href="https://alberto-rj.github.io/tip-calculator">Preview site</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/alberto-rj/tip-calculator/issues">Report Bug</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/alberto-rj/tip-calculator/issues">Request Feature</a>
+  </p>
+</div>
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
+<!-- Badges -->
+<div align="center">
+  <!-- Profiles -->
+  <a href="https://www.frontendmentor.io/profile/alberto-rj">
+    <img src="https://img.shields.io/badge/Profile-Alberto Raúl José-fefefe?style=for-the-badge&logo=frontendmentor" alt="Alberto Raúl José's Profile">
+  </a> &nbsp;&nbsp;&nbsp;
 
-## Overview
+  <!-- Status -->
+  <a href="#">
+    <img src="https://img.shields.io/badge/Status-Completed-00CE80?style=for-the-badge" alt="Status Completed">
+  </a> &nbsp;&nbsp;&nbsp;
 
-### The challenge
+  <!-- Difficulty -->
+  <a href="https://www.frontendmentor.io/challenges?difficulties=1"  >
+    <img src="https://img.shields.io/badge/Difficulty-Junior-AAC745?style=for-the-badge&logo=frontendmentor" alt="Challenge Difficulty - Junior">
+  </a>
+
+</div>
+<br />
+<br />
+
+<div align=left>
+<h2>Demo</h2>
+
+![Desktop demo](./demo/demo-desktop.gif)
+
+<h3>Other devices</h3>
+
+<details>
+<br>
+<summary>Mobile</summary>
+
+<img src="demo/demo-mobile.png" alt="Mobile demo">
+</details>
+
+<details>
+<br>
+<summary>Tablet</summary>
+<img src="demo/demo-tablet.png" alt="Mobile demo">
+</details>
+</div>
+<br>
+
+### Links
+
+- [Preview site](https://alberto-rj.github.io/tip-calculator)
+- [Preview solution on Frontent Mentor](#)
+
+## The challenge
 
 Users should be able to:
 
@@ -25,57 +71,35 @@ Users should be able to:
 - See hover states for all interactive elements on the page
 - Calculate the correct tip and total cost of the bill per person
 
-### Screenshot
+## Built with
 
-![](./screenshot.jpg)
+<div align=left>
 
-### Links
+ ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) &nbsp;&nbsp;
+ ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) &nbsp;&nbsp;
+  ![SASS](https://img.shields.io/badge/sass-%CC6699.svg?style=for-the-badge&logo=sass&logoColor=white) &nbsp;&nbsp;
+ ![JavaScript](https://img.shields.io/badge/ES6%20Modules%20-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+</div>
+<br>
 
-## My process
+## Tools Used
 
-### Built with
+<div align=left>
+  
+![Google](https://img.shields.io/badge/google-DA4437?style=for-the-badge&logo=google&logoColor=white) &nbsp;&nbsp;
+![Visual Studio Code](https://img.shields.io/badge/VS%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) &nbsp;&nbsp;
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-
-### Tools
-
-### What I learned
-
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
-```
-
-### Continued development
-
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+</div>
+<br>
 
 ## Author
 
-- GitHub - [@alberto-rj](https://www.your-site.com)
-- Frontend Mentor - [@alberto-rj](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@albertorauljose](https://www.twitter.com/yourusername)
+- GitHub - [@alberto-rj](https://www.github.com/alberto-rj)
+- Frontend Mentor - [@alberto-rj](https://www.frontendmentor.io/profile/alberto-rj)
+- Twitter - [@albertorauljose](https://www.twitter.com/albertorauljose)
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+Challenge was provided by [Frontend Mentor](https://www.frontendmentor.io).
