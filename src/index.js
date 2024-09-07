@@ -87,15 +87,8 @@ const setFadeInReverseEffect = (elements) => {
   }
 };
 
-const toCents = (value) => value * 100;
-
-const toValue = (value) => value / 100;
-
 const calculateData = (bill, tip, nop) => {
-  bill = toCents(bill);
-  tip = toCents(tip);
-  nop = toCents(nop);
-  let tipAmount = toValue(bill * (tip / 100));
+  let tipAmount = bill * (tip / 100);
   const totalBillWithTip = bill + tipAmount;
   const totalPerPerson = totalBillWithTip / nop;
   const tipPerPerson = tipAmount / nop;
