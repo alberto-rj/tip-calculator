@@ -100,7 +100,7 @@
             step="0.01" 
             min="0" 
             max="9999" 
-            aria-label="Enter the total bill amount, from 0 to 9999" 
+            aria-label="Enter total bill amount, between 0 and 9999 dollars" 
             aria-required="true" 
             required
             placeholder="0.00" 
@@ -114,7 +114,7 @@
             id="tip-listbox" 
             role="listbox" 
             tabindex="0"
-            aria-label="Select tip percentage" 
+            aria-label="Select a tip percentage from 5% to 50%" 
             aria-activedescendant="tip-option-3" 
             class="form__listbox"
           />
@@ -123,14 +123,14 @@
               role="option" 
               data-value="5"
               class="form__option" 
-              aria-label="Tip option: 5 percent"
+              aria-label="Select 5 percent tip"
             >
               5%
             </span>
             <span 
               id="tip-option-2" 
               role="option" 
-              aria-label="Tip option: 10 percent"
+              aria-label="Select 10 percent tip"
               data-value="10"
               class="form__option" 
             >
@@ -140,7 +140,7 @@
               id="tip-option-3" 
               role="option" 
               aria-selected="true" 
-              aria-label="Tip option: 15 percent"
+              aria-label="Select 15 percent tipt"
               data-value="15"
               class="form__option"
             >
@@ -149,7 +149,7 @@
             <span 
               id="tip-option-4" 
               role="option" 
-              aria-label="Tip option: 25 percent"
+              aria-label="Select 25 percent tip"
               data-value="25"
               class="form__option"
             >
@@ -158,7 +158,7 @@
             <span 
               id="tip-option-5" 
               role="option" 
-              aria-label="Tip option: 50 percent"
+              aria-label="Select 50 percent tip"
               data-value="50"
               class="form__option" 
             >
@@ -173,7 +173,7 @@
               step="0.01" 
               maxlength="6"
               placeholder="0.00" 
-              aria-label="Enter a custom tip, a decimal number from 0 to 100" 
+              aria-label="Enter a custom tip percentage, between 0 and 100 percent" 
               class="form__input"
             />
           </div>
@@ -190,7 +190,7 @@
             min="1" 
             max="100" 
             maxlength="3"
-            aria-label="Enter a number of people, an integer from 1 to 100" 
+            aria-label="Enter number of people splitting the bill, between 1 and 100" 
             aria-required="true" 
             required 
             placeholder="1"
@@ -221,7 +221,7 @@
         <button 
           id="reset-btn" 
           type="button" 
-          aria-label="Reset all inputs and outputs" 
+          aria-label="Reset all inputs and calculated results" 
           aria-disabled="true"
           disabled 
           class="output__btn"
