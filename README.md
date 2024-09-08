@@ -61,6 +61,8 @@
 - [Preview site](https://alberto-rj.github.io/tip-calculator)
 - [Preview solution on Frontent Mentor](https://www.frontendmentor.io/solutions/animated-tip-calcutor-app-using-sass-qxM5pUiJDC)
 
+<br>
+
 ## The challenge
 
 Users should be able to:
@@ -68,6 +70,8 @@ Users should be able to:
 - View the optimal layout for the app depending on their device's screen size
 - See hover states for all interactive elements on the page
 - Calculate the correct tip and total cost of the bill per person
+
+<br>
 
 ## Languages and Tools
 
@@ -79,11 +83,15 @@ Users should be able to:
 ![Visual Studio Code](https://img.shields.io/badge/VS%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) &nbsp;&nbsp;
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
+<br>
+
 ## Author
 
 - GitHub - [@alberto-rj](https://www.github.com/alberto-rj)
 - Frontend Mentor - [@alberto-rj](https://www.frontendmentor.io/profile/alberto-rj)
 - Twitter - [@albertorauljose](https://www.twitter.com/albertorauljose)
+
+<br>
 
 ## Acknowledgments
 
