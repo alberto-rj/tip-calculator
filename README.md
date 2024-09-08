@@ -35,8 +35,8 @@
   </a>
 
 </div>
-<br />
-<br />
+<br>
+<br>
 
 ## Demo
 
@@ -46,14 +46,13 @@
 
 <details>
 <br>
-<summary>Mobile</summary>
-
+<summary><strong>Mobile</strong></summary>
 <img src="demo/demo-mobile.png" alt="Mobile demo">
 </details>
 
 <details>
 <br>
-<summary>Tablet</summary>
+<summary><strong>Tablet</strong></summary>
 <img src="demo/demo-tablet.png" alt="Mobile demo">
 </details>
 
