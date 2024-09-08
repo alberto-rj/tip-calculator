@@ -1,5 +1,5 @@
-import Listbox from "./list-box.js";
-import DataStore from "./data-store.js";
+import Listbox from "./list-box.min.js";
+import DataStore from "./data-store.min.js";
 
 
 /* Form fields elements */
