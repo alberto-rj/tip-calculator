@@ -57,9 +57,6 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="styles/index.min.css" />
-
-  <!-- JS -->
-  <script type="module" src="src/index.min.js"></script>
 </head>
 <body class="page">
   <main class="content">
@@ -96,6 +93,7 @@
             id="bill-input" 
             type="number" 
             inputmode="decimal" 
+            pattern="^(\\d+|\\d+\\.\\d+)$"
             step="0.01" 
             min="0" 
             max="9999" 
@@ -167,6 +165,7 @@
               id="custom-tip-input" 
               type="number" 
               inputmode="decimal" 
+              pattern="^(\\d+|\\d+\\.\\d+)$"
               min="0" 
               max="100" 
               step="0.01" 
@@ -227,5 +226,7 @@
       </div>
     </div>
   </main>
+  <!-- JS -->
+  <script type="module" src="src/index.min.js"></script>
 </body>
 </html>
