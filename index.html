@@ -33,7 +33,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
   <link rel="mask-icon" href="assets/images/safari-pinned-tab.svg" color="#5bbad5">
   <link rel="shortcut icon" href="assets/images/favicon.ico" />
-  <link rel="manifest" href="/manifest.json" />
+  <link rel="manifest" href="manifest.json" />
   <meta name="msapplication-TileColor" content="#2a150f" />
   <meta name="msapplication-config" content="assets/images/browserconfig.xml" />
   <meta name="theme-color" content="#26c0ab" />
@@ -56,12 +56,23 @@
   </script> 
 
   <!-- CSS -->
+  <style>
+    @font-face {
+      font-family: 'Space Mono';
+      src: url(assets/fonts/SpaceMono-Bold.woff2) format(woff2);
+      font-weight: 700;
+      font-display: swap;
+    }
+  </style>
   <link rel="stylesheet" href="styles/index.min.css" />
 </head>
 <body class="page">
   <main class="content">
     <!-- Brief introduction -->
-    <section aria-labelledby="intro-heading" class="visually-hidden">
+    <section 
+      aria-labelledby="intro-heading" 
+      class="visually-hidden"
+    >
       <h1 id="intro-heading">Calculate Your Tips Accurately</h1>
       <p>
         Welcome to the Tip Calculator! Quickly and accurately calculate the tips and total amounts for your bill.
@@ -73,7 +84,7 @@
       <a 
         class="logo__link" 
         href="index.html" 
-        aria-label="Home page link"
+        aria-label="Splitter - Home"
       >
         <img  
           src="assets/images/logo.svg" 
@@ -97,10 +108,8 @@
             step="0.01" 
             min="0" 
             max="9999" 
-            aria-label="Enter total bill amount, between 0 and 9999 dollars" 
-            aria-required="true" 
+            aria-required="true"
             required
-            placeholder="0.00" 
             class="form__input icon-dollar"
           />
           <span id="bill-alert" role="alert" aria-live="assertive" class="form__alert"></span>
@@ -119,15 +128,13 @@
               id="tip-option-1" 
               role="option" 
               data-value="5"
-              class="form__option" 
-              aria-label="Select 5 percent tip"
+              class="form__option"
             >
               5%
             </span>
             <span 
               id="tip-option-2" 
               role="option" 
-              aria-label="Select 10 percent tip"
               data-value="10"
               class="form__option" 
             >
@@ -136,8 +143,7 @@
             <span 
               id="tip-option-3" 
               role="option" 
-              aria-selected="true" 
-              aria-label="Select 15 percent tipt"
+              aria-selected="true"
               data-value="15"
               class="form__option"
             >
@@ -146,7 +152,6 @@
             <span 
               id="tip-option-4" 
               role="option" 
-              aria-label="Select 25 percent tip"
               data-value="25"
               class="form__option"
             >
@@ -155,7 +160,6 @@
             <span 
               id="tip-option-5" 
               role="option" 
-              aria-label="Select 50 percent tip"
               data-value="50"
               class="form__option" 
             >
@@ -165,12 +169,11 @@
               id="custom-tip-input" 
               type="number" 
               inputmode="decimal" 
-              pattern="^(\\d+|\\d+\\.\\d+)$"
+              pattern="^(\\d+|\\d+\\.\\d+)$" 
+              placeholder="custom"
               min="0" 
               max="100" 
               step="0.01" 
-              placeholder="0.00" 
-              aria-label="Enter a custom tip percentage, between 0 and 100 percent" 
               class="form__input"
             />
           </div>
@@ -186,44 +189,49 @@
             inputmode="numeric" 
             min="1" 
             max="100"
-            aria-label="Enter number of people splitting the bill, c" 
             aria-required="true" 
             required 
-            placeholder="1"
             class="form__input icon-person"
           />
           <span id="nop-alert" role="alert" aria-live="assertive" class="form__alert"></span>
         </div>
       </form>
-      <div class="output">
+      <section aria-labelledby="output-heading"  class="output">
+        <div class="visually-hidden">
+          <h2 id="output-heading">Your results</h2>
+          <p>
+            Your results are shown below based on the information you 
+            provided. To adjust the result, just edit the form.
+          </p>
+        </div>
         <div class="output__header">
-          <h2 aria-live="polite" class="output__heading">
+          <p aria-live="polite" class="output__heading">
             <span id="tip-amount-heading" class="output__name">
               <span class="visually-hidden">Tip amount per person</span>
               <span aria-hidden="true" class="output__big">Tip Amount</span>
               <span aria-hidden="true" class="output__small">/ person</span>
             </span>
             <span id="tip-amount-data" class="output__value">$0.00</span>
-          </h2>
-          <h2 aria-live="polite" class="output__heading">
+          </p>
+          <p aria-live="polite" class="output__heading">
             <span id="total-heading" class="output__name">
               <span class="visually-hidden">Total per person</span>
               <span aria-hidden="true" class="output__big">Total</span>
               <span aria-hidden="true" class="output__small">/ person</span>
             </span>
             <span id="total-data" class="output__value">$0.00</span>
-          </h2>
+          </p>
         </div>
         <button 
           id="reset-btn" 
-          type="button" 
-          aria-label="Reset all inputs and calculated results" 
+          type="button"
           disabled 
           class="output__btn"
         >
-          Reset
+          <span aria-hidden="true">Reset</span>
+          <span class="visually-hidden">Reset all inputs and calculated results</span>
         </button>
-      </div>
+      </section>
     </div>
   </main>
   <!-- JS -->
