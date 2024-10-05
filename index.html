@@ -36,7 +36,7 @@
   <link rel="manifest" href="manifest.json" />
   <meta name="msapplication-TileColor" content="#2a150f" />
   <meta name="msapplication-config" content="assets/images/browserconfig.xml" />
-  <meta name="theme-color" content="#26c0ab" />
+  <meta name="theme-color" content="#00494d" />
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -97,7 +97,7 @@
       </a>
     </div>
     <div class="card">
-      <form class="form" novalidate>
+      <form class="form" novalidate id="form">
         <div class="form__field">
           <label for="bill-input" class="form__label">Bill</label>
           <input 
@@ -110,75 +110,49 @@
             max="9999" 
             aria-required="true"
             required
-            class="form__input icon-dollar"
+            class="form__input form__input--is-text-field form__input--has-dollar-icon"
           />
           <span id="bill-alert" role="alert" aria-live="assertive" class="form__alert"></span>
         </div>
-        <div class="form__group">
-          <span aria-hidden="true" class="form__label">Select Tip %</span>
-          <div
-            id="tip-listbox" 
-            role="listbox" 
-            tabindex="0"
-            aria-label="Select a tip percentage from 5% to 50%" 
-            aria-activedescendant="tip-option-3" 
-            class="form__listbox"
-          />
-            <span 
-              id="tip-option-1" 
-              role="option" 
-              data-value="5"
-              class="form__option"
-            >
-              5%
-            </span>
-            <span 
-              id="tip-option-2" 
-              role="option" 
-              data-value="10"
-              class="form__option" 
-            >
-              10%
-            </span>
-            <span 
-              id="tip-option-3" 
-              role="option" 
-              aria-selected="true"
-              data-value="15"
-              class="form__option"
-            >
-              15%
-            </span>
-            <span 
-              id="tip-option-4" 
-              role="option" 
-              data-value="25"
-              class="form__option"
-            >
-              25%
-            </span>
-            <span 
-              id="tip-option-5" 
-              role="option" 
-              data-value="50"
-              class="form__option" 
-            >
-              50%
-            </span>
-            <input 
-              id="custom-tip-input" 
-              type="number" 
-              inputmode="decimal" 
-              pattern="^(\\d+|\\d+\\.\\d+)$" 
-              placeholder="custom"
-              min="0" 
-              max="100" 
-              step="0.01" 
-              class="form__input"
-            />
+        <fieldset class="form__group">
+          <legend class="form__title">Select Tip %</legend>
+          <div class="form__grid">
+            <div class="form__radio">
+              <input type="radio" id="radio-1" value="5" name="tip" class="form__radio-input" />
+              <label for="radio-1" class="form__radio-label">5%</label>
+            </div>
+            <div class="form__radio">
+              <input type="radio" id="radio-2" value="10" name="tip" class="form__radio-input" />
+              <label for="radio-2" class="form__radio-label">10%</label>
+            </div>
+            <div class="form__radio">
+              <input type="radio" id="radio-3" value="15" name="tip" class="form__radio-input" />
+              <label for="radio-3" class="form__radio-label">15%</label>
+            </div>
+            <div class="form__radio">
+              <input type="radio" id="radio-4" value="25" name="tip" class="form__radio-input" />
+              <label for="radio-4" class="form__radio-label">25%</label>
+            </div>
+            <div class="form__radio">
+              <input type="radio" id="radio-5" value="50" name="tip" class="form__radio-input" />
+              <label for="radio-5" class="form__radio-label">50%</label>
+            </div>
+            <div class="form__field">
+              <input 
+                id="custom-tip-input" 
+                type="number" 
+                inputmode="decimal" 
+                pattern="^(\\d+|\\d+\\.\\d+)$" 
+                placeholder="custom"
+                min="0" 
+                max="100" 
+                step="0.01" 
+                class="form__input form__input--is-text-field form__input--has-placeholder"
+              /> 
+              <span id="tip-alert" role="alert" aria-live="assertive" class="form__alert"></span>
+            </div>
           </div>
-          <span id="tip-alert" role="alert" aria-live="assertive" class="form__alert"></span>
-        </div>
+        </fieldset>
         <div class="form__field">
           <label for="number-of-people-input" class="form__label">
             Number of People
@@ -187,21 +161,22 @@
             id="number-of-people-input" 
             type="number" 
             inputmode="numeric" 
+            pattern="^\\d+$"
             min="1" 
             max="100"
             aria-required="true" 
             required 
-            class="form__input icon-person"
+            class="form__input form__input--is-text-field form__input--has-person-icon"
           />
           <span id="nop-alert" role="alert" aria-live="assertive" class="form__alert"></span>
         </div>
       </form>
       <section aria-labelledby="output-heading"  class="output">
         <div class="visually-hidden">
-          <h2 id="output-heading">Your results</h2>
+          <h2 id="output-heading">Calculation Results</h2>
           <p>
-            Your results are shown below based on the information you 
-            provided. To adjust the result, just edit the form.
+            These are the calculated results for the tip amount and total
+            amount per person based on the values you entered.
           </p>
         </div>
         <div class="output__header">

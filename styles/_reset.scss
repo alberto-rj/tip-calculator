@@ -10,3 +10,27 @@
   padding: 0;
   text-decoration: none;
 }
+
+body {
+  color: var(--gray-100);
+  background: var(--gray-300);
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+}
+
+::selection {
+  background: var(--cyan-400);
+  color: var(--gray-500);
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cyan-400);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cyan-200);
+}

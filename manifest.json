@@ -3,8 +3,8 @@
   "short_name": "Calculator",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#5e7a7d",
-  "theme_color": "#26c0ab",
+  "background_color": "#a1e8e0", 
+  "theme_color": "#00494d",
   "icons": [
     {
       "src": "assets/images/android-chrome-192x192.png",
