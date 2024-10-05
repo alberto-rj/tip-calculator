@@ -175,7 +175,7 @@ const validateBill = (input) => {
     clearInputError(input);
   } else {
     inputStore.set(id, null);
-    showInputError(input, "Enter 0 to 9999 only");
+    showInputError(input, 'Enter between 0 and 9999 only');
   }
 };
 
@@ -187,7 +187,7 @@ const validateCustomTip = (input) => {
     clearInputError(input);
   } else {
     inputStore.set(id, null);
-    showInputError(input, "Enter 0 to 100 only");
+    showInputError(input, 'Enter between 0 and 100 only');
   }
 };
 
@@ -199,7 +199,7 @@ const validateNumberOfPeople = (input) => {
     clearInputError(input);
   } else {
     inputStore.set(id, null);
-    showInputError(input, "Enter 1 to 100 only");
+    showInputError(input, 'Enter between 0 and 100 only');
   }
 };
 /* Functions for input validation */
