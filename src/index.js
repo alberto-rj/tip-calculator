@@ -1,10 +1,9 @@
-import Listbox from "./list-box.min.js";
-import DataStore from "./data-store.min.js";
-
+// form
+const form = document.getElementById('form');
+// form
 
 /* Form fields elements */
 const billInput = document.getElementById('bill-input');
-const tipListbox = document.getElementById('tip-listbox');
 const customTipInput = document.getElementById('custom-tip-input');
 const numberOfPeopleInput = document.getElementById('number-of-people-input');
 const inputs = [
@@ -14,6 +13,9 @@ const inputs = [
 ];
 /* Form fields elements */
 
+// radio buttons
+const radioInputs = document.querySelectorAll('.form__radio-input');
+// radio buttons
 
 /* Reset button */
 const resetBtn = document.getElementById('reset-btn');
@@ -33,28 +35,22 @@ const fadeInElements = [
 ];
 /* Output elements */
 
-
-/* Object for the tip selection */
-const listbox = new Listbox(tipListbox);
-/* Object for the tip selection */
-
-
-/* Object for store the inputs values */
-let inputStore  = new DataStore();
-
-const defaultInputStore = () => {
-  inputStore.set(billInput.id, null);
-  inputStore.set(customTipInput.id, 15);
-  inputStore.set(numberOfPeopleInput.id, null);
-};
-
-defaultInputStore();
-/* Object for store the inputs values */
+// current tip
+let currentTip = 0;
+// current tip
 
 
 /* general logic */
 const addClass = (element, className) => {
   element.classList.add(className);
+};
+
+const removeCheckedRadioInput = () => {
+  radioInputs.forEach((input) => {
+    if (input.checked) {
+      input.checked = false;
+    }
+  });
 };
 
 const removeClass = (element, className) => {
@@ -109,19 +105,18 @@ const resetData = () => {
 };
 
 const writeData = () => {
-  const bill = inputStore.get(billInput.id);
-  const tip = inputStore.get(customTipInput.id);
-  const nop = inputStore.get(numberOfPeopleInput.id);
-  const data = calculateData(bill, tip, nop);
+  const bill = Number.parseFloat(billInput.value);
+  const nop = Number.parseFloat(numberOfPeopleInput.value);
+  const data = calculateData(bill, currentTip, nop);
   renderData(data);
   setFadeInEffect(fadeInElements);
   setDisabled(resetBtn, false);
-}
+};
 
 const tryWriteData = () => {
-  if (inputStore.hasEmptyKey())
-    return;
-  writeData();
+  if (form.checkValidity()) {
+    writeData();
+  }
 };
 /* general logic */
 
@@ -132,7 +127,7 @@ const setShakeEffect = (element) => {
 };
 
 const parentOf = (input) => {
-  return input.closest('.form__field, .form__group');
+  return input.closest('.form__field');
 };
 
 const alertOf = (parent) => {
@@ -171,23 +166,19 @@ const validateBill = (input) => {
   const { id, value } = input;
   const billValue = Number.parseFloat(value);
   if (input.checkValidity() && !Number.isNaN(billValue)) {
-    inputStore.set(id, billValue);
     clearInputError(input);
   } else {
-    inputStore.set(id, null);
-    showInputError(input, "Enter 0 to 9999 only");
+    showInputError(input, 'Enter between 0 and 9999');
   }
 };
 
 const validateCustomTip = (input) => {
   const {id, value } = input;
-  const customValue = Number.parseFloat(value);
-  if (input.checkValidity() && !Number.isNaN(customValue)) {
-    inputStore.set(id, customValue);
+  currentTip = Number.parseFloat(value);
+  if (input.checkValidity() && !Number.isNaN(currentTip)) {
     clearInputError(input);
   } else {
-    inputStore.set(id, null);
-    showInputError(input, "Enter 0 to 100 only");
+    showInputError(input, 'Enter between 0 and 100');
   }
 };
 
@@ -195,11 +186,9 @@ const validateNumberOfPeople = (input) => {
   const { id, value } = input;
   const nop = Number.parseInt(value);
   if (input.checkValidity() && !Number.isNaN(nop)) {
-    inputStore.set(id, nop);
     clearInputError(input);
   } else {
-    inputStore.set(id, null);
-    showInputError(input, "Enter 1 to 100 only");
+    showInputError(input, 'Enter between 0 and 100');
   }
 };
 /* Functions for input validation */
@@ -215,13 +204,10 @@ const resetInputs = () => {
   inputs.forEach(resetInput);
 };
 
-const resetListbox = () => {
-  listbox.focus(2);
-};
 
 const resetFormFields = () => {
-  resetInputs();
-  resetListbox();
+  currentTip = 0;
+  form.reset();
 };
 /* Function for the reset state*/
 
@@ -232,7 +218,6 @@ const resetBtnHandler = (event) => {
   resetData();
   setFadeInReverseEffect(fadeInElements);
   resetFormFields();
-  defaultInputStore();
 };
 /* Click event handler for the reset button */
 
@@ -261,29 +246,28 @@ const inputHandlers = {};
 
 inputHandlers[billInput.id] = (event) => {
   handleInput(event.target, validateBill);
-}
+};
 
 inputHandlers[customTipInput.id] = (event) => {
-  listbox.clearSelectedOption();
+  removeCheckedRadioInput();
   handleInput(event.target, validateCustomTip);
-}
+};
 
 inputHandlers[numberOfPeopleInput.id] = (event) => {
   handleInput(event.target, validateNumberOfPeople);
-}
+};
 /* Input Event Handler for the form fields */
 
 
 /* selectionTipHandler */
-const selectionTipHandler = (option) => {
+const selectionTipHandler = (event) => {
   resetInput(customTipInput);
-  let number = Number.parseFloat(option.dataset.value);
-  if (Number.isNaN(number)) {
-    inputStore.set(customTipInput.id, null);
-  } else {
-    inputStore.set(customTipInput.id, number);
-    tryWriteData();
+  currentTip = Number.parseFloat(event.target.value);
+  if (Number.isNaN(currentTip)) {
+    currentTip = 0;
+    return ;
   }
+  tryWriteData();
 };
 /* selectionTipHandler */
 
@@ -302,5 +286,7 @@ fadeInElements.forEach((element) => {
 // Add event listener for the "resetBtn"
 resetBtn.addEventListener('click', resetBtnHandler);
 
-// Add a call back for the "lisbox"
-listbox.onSelected = selectionTipHandler;
+// Add a call back for the radio inputs
+radioInputs.forEach((input) => {
+  input.addEventListener('change', selectionTipHandler);
+});
