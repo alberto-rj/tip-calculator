@@ -7,7 +7,7 @@
     <a href="https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX">
       <strong>Frontend Mentor Challenge</strong>
     </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://github.com/alberto-rj/tip-calculator/README-PT.md">Switch to Portuguese 🇧🇷</a>
+    <a href="https://github.com/alberto-rj/tip-calculator/blob/main/README-PT.md">Switch to Portuguese 🇧🇷</a>
     <br />
     <br />
     <a href="https://alberto-rj.github.io/tip-calculator">View the App</a>
