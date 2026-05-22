@@ -56,7 +56,7 @@ This tip calculator lets users split a bill across a group, choosing from preset
 
 - **Accessible validation without a framework:** The hardest part wasn't the calculation - it was making the error states work correctly for screen reader users. I had to use `aria-live` regions and `aria-describedby` to connect error messages to their inputs, so assistive technology announces them at the right moment. I initially handled this only visually and only caught the gap during manual testing with VoiceOver.
 
-- **Floating point precision:** `0.1 + 0.2 === 0.30000000000000004` in JavaScript. Tip calculations exposed this quickly. I solved it by rounding results to two decimal places at the display layer using `toFixed(2)`, rather than trying to handle precision in the calculation itself — which kept the logic clean.
+- **Floating point precision:** `0.1 + 0.2 === 0.30000000000000004` in JavaScript. Tip calculations exposed this quickly. I solved it by rounding results to two decimal places at the display layer using `toFixed(2)`, rather than trying to handle precision in the calculation itself - which kept the logic clean.
 
 - **What I'd do differently:** I'd write the calculation logic as pure functions from the start and test them in isolation before connecting them to the DOM. I ended up with calculation and DOM code mixed together, which made debugging edge cases (like a `0` number of people) harder than it needed to be. Separating concerns earlier would have saved time.
 
