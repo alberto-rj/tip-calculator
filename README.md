@@ -8,8 +8,6 @@
     <a href="https://alberto-rj.github.io/tip-calculator"><strong>View Live</strong></a>
     &nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="https://github.com/alberto-rj/tip-calculator/issues">Report a Bug</a>
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="https://github.com/alberto-rj/tip-calculator/blob/main/README-PT.md">Português 🇧🇷</a>
   </p>
 
   <br />
