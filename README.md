@@ -1,8 +1,6 @@
 <div align="center">
 
-  <img src="https://www.frontendmentor.io/static/images/logo-mobile.svg" alt="frontendmentor" width="80">
-
-  <h2 align="center">Tip Calculator App</h2>
+  <h1 align="center">Tip Calculator App</h1>
 
   <p align="center">
     A responsive tip calculator with real-time updates, accessible validation, and support for custom tip percentages - built as a <a href="https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX"><strong>Frontend Mentor</strong></a> challenge.
